@@ -3,6 +3,7 @@ import Car from './Car/Car';
 import React, { Component } from 'react';
 
 class App extends Component {
+
   state = {
     cars: [
       {name: "Ford", year: 2018},
@@ -35,7 +36,16 @@ class App extends Component {
     this.setState({cars});
   }
 
+  componentWillMount() {
+    console.log('will mount')
+  }
+
+  componentDidMount() {
+    console.log('did mount')
+  }
+
   render() {
+    console.log('render')
     const cars = this.state.cars;
     return (
       <div className="App">
@@ -43,6 +53,11 @@ class App extends Component {
 
         <button onClick={this.changeShowCars}>Show Cars</button>
 
+        <div style={{
+          width: 400,
+          margin: 'auto',
+          paddingTop: '20px'
+        }}>
         {this.state.showCars && 
               cars.map((car, index) => (
                 <Car 
@@ -54,6 +69,7 @@ class App extends Component {
                 />
               ))
         }
+        </div>
       </div>
     );
   }
