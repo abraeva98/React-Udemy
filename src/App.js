@@ -13,26 +13,33 @@ class App extends Component {
     showCars: false
   }
 
-  changeTitleHandler = (newTitle) => {
+  onChangeName = (name, index) => {
+    const car = this.state.cars[index];
+    car.name = name;
+    const cars = [...this.state.cars];
+    cars[index] = car;
     this.setState({
-      pageTitle: newTitle
+      cars
     })
   }
-  
+
   changeShowCars = () => {
     this.setState({
       showCars: !this.state.showCars
     })
   }
+
+  deleteHandler = (index) => {
+    const cars = this.state.cars.concat();
+    cars.splice(index, 1);
+    this.setState({cars});
+  }
+
   render() {
     const cars = this.state.cars;
     return (
       <div className="App">
         <h1>{this.state.pageTitle}</h1>
-
-
-
-        <button onClick={this.changeTitleHandler.bind(this, 'Changed')}>Change Title</button>
 
         <button onClick={this.changeShowCars}>Show Cars</button>
 
@@ -42,7 +49,8 @@ class App extends Component {
                     name={car.name} 
                     year={car.year}
                     key={index} 
-                    onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                    onChangeName={(event) => this.onChangeName(event.target.value, index)}
+                    onDelete={this.deleteHandler.bind(this, index)}
                 />
               ))
         }
