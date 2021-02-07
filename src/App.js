@@ -1,14 +1,15 @@
 import './App.css';
 import Car from './Car/Car';
 import React, { Component } from 'react';
+import Counter from './Counter/Counter'
 
 class App extends Component {
 
   state = {
     cars: [
       {name: "Ford", year: 2018},
-      {name: "Audi", year: 2011},
-      {name: "Mazda", year: 2012},
+      // {name: "Audi", year: 2011},
+      // {name: "Mazda", year: 2012},
     ],
     pageTitle: "Super Star",
     showCars: false
@@ -36,9 +37,9 @@ class App extends Component {
     this.setState({cars});
   }
 
-  componentWillMount() {
-    console.log('will mount')
-  }
+  // componentWillMount() {
+  //   console.log('will mount')
+  // }
 
   componentDidMount() {
     console.log('did mount')
@@ -49,9 +50,14 @@ class App extends Component {
     const cars = this.state.cars;
     return (
       <div className="App">
+
+        <Counter />
+
         <h1>{this.state.pageTitle}</h1>
 
-        <button onClick={this.changeShowCars}>Show Cars</button>
+        <button 
+            style={{marginTop: '20px'}}
+            onClick={this.changeShowCars}>Show Cars</button>
 
         <div style={{
           width: 400,
