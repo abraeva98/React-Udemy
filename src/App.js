@@ -8,8 +8,8 @@ class App extends Component {
   state = {
     cars: [
       {name: "Ford", year: 2018},
-      // {name: "Audi", year: 2011},
-      // {name: "Mazda", year: 2012},
+      {name: "Audi", year: 2011},
+      {name: "Mazda", year: 2012},
     ],
     pageTitle: "Super Star",
     showCars: false
@@ -70,6 +70,7 @@ class App extends Component {
                     name={car.name} 
                     year={car.year}
                     key={index} 
+                    index={index}
                     onChangeName={(event) => this.onChangeName(event.target.value, index)}
                     onDelete={this.deleteHandler.bind(this, index)}
                 />

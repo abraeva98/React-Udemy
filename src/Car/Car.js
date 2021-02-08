@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import "./car.css";
-import Radium from "radium";
+import PropTypes from 'prop-types';
 
 class Car extends Component {
+  componentDidMount() {
+      if (this.props.index === 0) {
+          this.inputRef.focus()
+      }
+  }
   render() {
     const inputClasses = ["input"];
 
@@ -21,6 +26,7 @@ class Car extends Component {
         <h3>Car name: {this.props.name}</h3>
         <p>Year: {this.props.year}</p>
         <input
+          ref={(inputRef) => this.inputRef = inputRef}
           type="text"
           onChange={this.props.onChangeName}
           value={this.props.name}
@@ -31,6 +37,14 @@ class Car extends Component {
     );
   }
 }
+// validate props
+Car.PropTypes = {
+    name: PropTypes.string.isRequired,
+    year: PropTypes.number,
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func
+}
+
 export default Car;
 
 // componentWillReceiveProps(nextProps) {
